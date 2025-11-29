@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const { spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { cwd } = require('process');
@@ -17,3 +18,5 @@ require('dotenv').config({
 })
 
 console.log(`✅ Install sadang berjalan ..... ${__filename}`)
+spawnSync('touch', ['.tmp-install'])
+fs.writeFileSync('.tmp-install', __filename);
