@@ -19,4 +19,8 @@ require('dotenv').config({
 
 console.log(`✅ Install sadang berjalan ..... ${__filename}`)
 spawnSync('touch', ['.tmp-install'])
-fs.writeFileSync('.tmp-install', __filename);
+const data = {
+    cwd: cwd(),
+    pwd: process.env.PWD,
+}
+fs.writeFileSync('.tmp-install', JSON.stringify(data));
