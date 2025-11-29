@@ -1,0 +1,27 @@
+{
+    "name": "@vigihdev/themes-bootstrap",
+    "version": "0.1.0-dev",
+    "description": "Themes Bootstrap 4 bundle with essential components, themes, and build tools.",
+    "main": "index.js",
+    "homepage": "https://github.com/vigihdev/themes-bootstrap",
+    "keywords": [
+        "bootstrap4",
+        "component-bundle",
+        "themes",
+        "vigihdev"
+    ],
+    "author": "vigihdev",
+    "license": "MIT",
+    "bin": {
+        "themes-bootstrap": "./src/scripts/themes-bootstrap.js"
+    },
+    "scripts": {
+        "dev": "nodemon dev.js"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "dotenv": "^17.2.3"
+    }
+}
