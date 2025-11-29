@@ -2,9 +2,9 @@
 const path = require("path");
 
 const envs = [
-    process.env?.BASEPATH_THEMES_STYLES,
-    process.env?.NODE_MODULES_THEMES_STYLES,
-    process.env?.ASSETS_THEMES_STYLES,
+    process.env?.BASEPATH_THEMES_BOOTSTRAP,
+    process.env?.NODE_MODULES_THEMES_BOOTSTRAP,
+    process.env?.ASSETS_THEMES_BOOTSTRAP,
 ];
 
 envs.forEach(env => {
@@ -14,9 +14,9 @@ envs.forEach(env => {
 });
 
 
-const BASEPATH = path.resolve(process.env.PWD, process.env.BASEPATH_THEMES_STYLES);
-const NODE = path.resolve(process.env.PWD, process.env.NODE_MODULES_THEMES_STYLES);
-const ASSETS = path.resolve(process.env.PWD, process.env.ASSETS_THEMES_STYLES)
+const BASEPATH = path.resolve(process.env.PWD, process.env.BASEPATH_THEMES_BOOTSTRAP);
+const NODE = path.resolve(process.env.PWD, process.env.NODE_MODULES_THEMES_BOOTSTRAP);
+const ASSETS = path.resolve(process.env.PWD, process.env.ASSETS_THEMES_BOOTSTRAP)
 
 module.exports.Paths = {
     BASEPATH: BASEPATH,

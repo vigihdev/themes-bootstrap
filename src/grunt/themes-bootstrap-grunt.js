@@ -1,16 +1,16 @@
 'use strict';
 
-const { ThemesStyleSass } = require('../sass/themes-styles-sass')
+const { ThemesBootstrapSass } = require('../sass/themes-bootstrap-sass')
 const fs = require('node:fs')
 const path = require('node:path')
 
-const COMMAND = 'themes_styles';
+const COMMAND = 'themes_bootstrap';
 
 /** @param {import("grunt")} grunt */
-module.exports.ThemesStylesGrunt = function (grunt) {
+module.exports.ThemesBootstrapGrunt = function (grunt) {
 
     grunt.task.registerTask(`${COMMAND}:clean`, `${COMMAND} Development`, function () {
-        const builds = path.join(ThemesStyleSass.basepath, 'builds')
+        const builds = path.join(ThemesBootstrapSass.basepath, 'builds')
         if (fs.existsSync(builds)) {
             try {
                 fs.rmSync(builds, { recursive: true, force: true })
@@ -21,7 +21,7 @@ module.exports.ThemesStylesGrunt = function (grunt) {
             }
         }
 
-        const dist = path.join(ThemesStyleSass.basepath, 'dist')
+        const dist = path.join(ThemesBootstrapSass.basepath, 'dist')
         if (fs.existsSync(dist)) {
             try {
                 fs.rmSync(dist, { recursive: true, force: true })
@@ -36,7 +36,8 @@ module.exports.ThemesStylesGrunt = function (grunt) {
     grunt.task.registerTask(`${COMMAND}:dist`, 'Development', function () {
         const args = grunt?.task?.current?.args ?? [];
         const initConfig = {
-            sass: ThemesStyleSass.sass,
+            sass: ThemesBootstrapSass.sass,
+            concat: ThemesBootstrapSass.concat,
         }
 
         grunt.initConfig(initConfig)
@@ -49,13 +50,14 @@ module.exports.ThemesStylesGrunt = function (grunt) {
             return;
         }
 
-        grunt.task.run(['sass'])
+        grunt.task.run(['sass', 'concat'])
     });
 
     grunt.task.registerTask(`${COMMAND}:build`, 'Development', function () {
-        const build = ThemesStyleSass.builds;
         const args = grunt?.task?.current?.args ?? [];
+        const build = ThemesBootstrapSass.builds;
         const initConfig = {
+            concat: build.concat,
             concat_css: build.concat_css,
         }
 
@@ -68,7 +70,7 @@ module.exports.ThemesStylesGrunt = function (grunt) {
             })
             return;
         }
-        grunt.task.run(['concat_css'])
+        grunt.task.run(['concat', 'concat_css'])
     });
 
     grunt.task.registerTask(`${COMMAND}:fresh`, 'Clean + Build fresh', [
@@ -81,15 +83,20 @@ module.exports.ThemesStylesGrunt = function (grunt) {
         grunt.task.run(`${COMMAND}:build`);
     });
 
-    grunt.task.registerTask(`${COMMAND}:watch`, 'watch themes styles grunt', function () {
+    grunt.task.registerTask(`${COMMAND}:watch`, 'Watch themes bootstrap grunt', function () {
 
-        const watch = ThemesStyleSass.watch;
+        const watch = ThemesBootstrapSass.watch;
         const initConfig = {
             watch: {
                 css: {
                     files: watch.css,
-                    tasks: [`${COMMAND}:dist`]
+                    tasks: [`${COMMAND}:dist`, `${COMMAND}:build`]
+                },
+                js: {
+                    files: watch.js,
+                    tasks: [`${COMMAND}:build`]
                 }
+
             },
         }
 

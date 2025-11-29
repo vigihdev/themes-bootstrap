@@ -16,6 +16,7 @@
         "themes-bootstrap": "./src/scripts/themes-bootstrap.js"
     },
     "scripts": {
+        "install": "src/scripts/install.js",
         "dev": "nodemon dev.js"
     },
     "engines": {
