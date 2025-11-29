@@ -1,7 +1,7 @@
 const { Paths } = require('./src/config/paths');
-const { ThemesStylesGrunt } = require('./src/grunt/themes-styles-grunt');
+const { ThemesBootstrapGrunt } = require('./src/grunt/themes-bootstrap-grunt');
 
 module.exports = {
     Paths,
-    ThemesStylesGrunt
+    ThemesBootstrapGrunt
 }
