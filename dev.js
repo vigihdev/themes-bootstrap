@@ -7,4 +7,4 @@ require('dotenv').config({
     quiet: true,
 })
 const { Paths } = require('./index');
-console.log(Paths)
+// console.log(Paths)
