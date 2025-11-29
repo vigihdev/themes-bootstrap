@@ -15,8 +15,8 @@ function pathValidate(filepath) {
     return filepath && fs.existsSync(filepath)
 }
 
-const valids = [dstPath, dstFilePath, srcPath].filter(p => !pathValidate(p))
-if (!valids || valids?.length > 0) {
+const notValids = [dstPath, dstFilePath, srcPath].filter(p => !pathValidate(p))
+if (!notValids || notValids?.length > 0) {
     return;
 }
 
